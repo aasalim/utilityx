@@ -108,28 +108,28 @@ find_lto(CXX)
 
 # Always list the source files explicitly, including headers so that they are listed in the IDE
 # If you need to use files based on a variable value, use target_sources
-add_library(xTemplate src/xTemplate.cpp)
+add_library(UtilityX src/UtilityX.cpp)
 
 # Since we put the public interface headers in the include directory, we need to tell the compiler so that we can #include <file>.
-target_include_directories(xTemplate
+target_include_directories(UtilityX
     PUBLIC # The folder must be used in the include path for any target using this library
     $<BUILD_INTERFACE:${CMAKE_CURRENT_LIST_DIR}/include> # Due to the way installation work, we only want this path set when building, not once installed
 )
 
 # The following properties are useful when you want to have an 'install' target
-set_target_properties(xTemplate
+set_target_properties(UtilityX
     PROPERTIES
-    PUBLIC_HEADER ${CMAKE_CURRENT_LIST_DIR}/include/xTemplate.h # Headers listed here will automatically be copied when installing. Note that directories hierarchy is not preserved.
+    PUBLIC_HEADER ${CMAKE_CURRENT_LIST_DIR}/include/UtilityX.h # Headers listed here will automatically be copied when installing. Note that directories hierarchy is not preserved.
     DEBUG_POSTFIX d # We had a postfix so that we can install debug and release libraries side by side (Windows way)
 )
 
 # CMake scripts extensions
-target_set_warnings(xTemplate ENABLE ALL AS_ERROR ALL DISABLE Annoying) # Helper that can set default warning flags for you
-target_enable_lto(xTemplate optimized) # enable lto if available for non-debug configurations
+target_set_warnings(UtilityX ENABLE ALL AS_ERROR ALL DISABLE Annoying) # Helper that can set default warning flags for you
+target_enable_lto(UtilityX optimized) # enable lto if available for non-debug configurations
 
 # Give a 'namespaced' name to libraries targets, as it can't be mistaken with system libraries
 # Use the same namespace as the one from the install command. This is only really needed if you want to support usage of your library through add_subdirectory.
-add_library(${PROJECT_NAME}::xxTemplate ALIAS xTemplate)
+add_library(${PROJECT_NAME}::xUtilityX ALIAS UtilityX)
 
 # ############################################################ BUILD DEVELOPMENT
 if(${PROJECT_NAME}_BUILD_EXAMPLES)
@@ -144,7 +144,7 @@ if(${PROJECT_NAME}_BUILD_COVERAGE)
     setup_target_for_coverage_gcovr_html(
         NAME coverage
         EXECUTABLE ctest
-        DEPENDENCIES xTemplate
+        DEPENDENCIES UtilityX
         BASE_DIRECTORY "${CMAKE_SOURCE_DIR}"
         EXCLUDE "tests" "examples/" "build/")
 

@@ -1,10 +1,10 @@
 
-add_executable(TestConstrain testConstrain.cpp)
+add_executable(UnitTests testClamp.cpp testMax.cpp)
 
-target_link_libraries(TestConstrain
+target_link_libraries(UnitTests
     PUBLIC
     GTest::gtest_main
     GTest::gmock
-    xTemplate
+    UtilityX
 )
-gtest_discover_tests(TestConstrain)
+gtest_discover_tests(UnitTests)

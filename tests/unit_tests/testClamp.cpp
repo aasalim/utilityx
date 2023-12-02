@@ -1,8 +1,8 @@
-#include "xTemplate.h"
+#include "UtilityX.h"
 #include <gtest/gtest.h>
 
 /**
- * ConstrainParameterizedFixture
+ * ClampParameterizedFixture
  *
  * Parameterized Variables:
  *      1) value
@@ -10,7 +10,7 @@
  *      3) high
  *      4) results  (Expected)
  */
-class ConstrainParameterizedFixture
+class ClampParameterizedFixture
     : public ::testing::Test,
       public ::testing::WithParamInterface<std::tuple<int, int, int, int>> {
 public:
@@ -20,13 +20,13 @@ public:
     int result;
     int expectedResult;
 };
-INSTANTIATE_TEST_CASE_P(ConstrainTests, ConstrainParameterizedFixture,
+INSTANTIATE_TEST_SUITE_P(ClampTests, ClampParameterizedFixture,
     ::testing::Values(
         std::make_tuple(0, 0, 0, 0),
         std::make_tuple(0, 1, 2, 1),
         std::make_tuple(3, 1, 2, 2)));
 
-TEST_P(ConstrainParameterizedFixture, Test_Constrain)
+TEST_P(ClampParameterizedFixture, Test_Constrain)
 {
     /* Arrange */
     value = std::get<0>(GetParam());
@@ -34,7 +34,7 @@ TEST_P(ConstrainParameterizedFixture, Test_Constrain)
     high = std::get<2>(GetParam());
     expectedResult = std::get<3>(GetParam());
     /* Act */
-    result = constrain(value, low, high);
+    result = clamp(value, low, high);
     /* Assert */
     EXPECT_EQ(result, expectedResult);
 }
