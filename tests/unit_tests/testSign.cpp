@@ -29,7 +29,7 @@ TEST_P(SignParameterizedFixture, Test_Sign)
     value = std::get<0>(GetParam());
     expectedResult = std::get<1>(GetParam());
     /* Act */
-    result = sign(value);
+    result = X::sign(value);
     /* Assert */
     EXPECT_EQ(result, expectedResult);
 }

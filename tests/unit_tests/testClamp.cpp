@@ -34,7 +34,7 @@ TEST_P(ClampParameterizedFixture, Test_Clamp)
     high = std::get<2>(GetParam());
     expectedResult = std::get<3>(GetParam());
     /* Act */
-    result = clamp(value, low, high);
+    result = X::clamp(value, low, high);
     /* Assert */
     EXPECT_EQ(result, expectedResult);
 }

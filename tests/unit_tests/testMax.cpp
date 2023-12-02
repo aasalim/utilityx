@@ -32,7 +32,7 @@ TEST_P(MaxParameterizedFixture, Test_Max)
     compare = std::get<1>(GetParam());
     expectedResult = std::get<2>(GetParam());
     /* Act */
-    result = max(value, compare);
+    result = X::max(value, compare);
     /* Assert */
     EXPECT_EQ(result, expectedResult);
 }

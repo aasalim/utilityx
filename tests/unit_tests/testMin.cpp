@@ -32,7 +32,7 @@ TEST_P(MinParameterizedFixture, Test_Min)
     compare = std::get<1>(GetParam());
     expectedResult = std::get<2>(GetParam());
     /* Act */
-    result = min(value, compare);
+    result = X::min(value, compare);
     /* Assert */
     EXPECT_EQ(result, expectedResult);
 }
