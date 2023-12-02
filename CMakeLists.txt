@@ -8,7 +8,6 @@
 # - BP_BUILD_TESTS (requires BUILD_TESTING set to ON)
 # Other options might be available through the cmake scripts including (not exhaustive):
 # - ENABLE_WARNINGS_SETTINGS
-# - ENABLE_LTO
 #
 cmake_minimum_required(VERSION 3.14)
 
@@ -29,6 +28,7 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_C_STANDARD 99)
 set(CMAKE_C_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
+set(CMAKE_INTERPROCEDURAL_OPTIMIZATION OFF)
 
 # ########################################################## MODULES AND SCRIPTS
 
@@ -41,7 +41,6 @@ include(CMakePackageConfigHelpers) # Helper to create relocatable packages
 # Custom modules and scripts
 list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_LIST_DIR}/cmake") # Make our cmake scripts available
 
-include(LTO)
 include(Warnings)
 include(CPM)
 include(StaticAnalyzers)
@@ -101,9 +100,6 @@ set(CMAKE_VISIBILITY_INLINES_HIDDEN 1)
 # Project Dependencies
 # CPMAddPackage("gh:aasalim/UtilityX#2676563bae7d79b3ccf1e64d61cda1e8ea97d111")
 
-# Check for LTO support (needs to be after project(...) )
-find_lto(CXX)
-
 # ############################################################ UtilityX Library
 
 # Always list the source files explicitly, including headers so that they are listed in the IDE
@@ -125,7 +121,6 @@ set_target_properties(UtilityX
 
 # CMake scripts extensions
 target_set_warnings(UtilityX ENABLE ALL AS_ERROR ALL DISABLE Annoying) # Helper that can set default warning flags for you
-target_enable_lto(UtilityX optimized) # enable lto if available for non-debug configurations
 
 # Give a 'namespaced' name to libraries targets, as it can't be mistaken with system libraries
 # Use the same namespace as the one from the install command. This is only really needed if you want to support usage of your library through add_subdirectory.

@@ -251,6 +251,7 @@ macro(find_lto lang)
 
         foreach(config IN LISTS DEBUG_CONFIGURATIONS)
           set_target_properties(${_target} PROPERTIES INTERPROCEDURAL_OPTIMIZATION_${config} ${__enable_debug_lto})
+          message(WARNING "${_target}-----------------INTERPROCEDURAL_OPTIMIZATION_${config} ${__enable_debug_lto}- ${LTO_COMPILE_FLAGS}")
         endforeach()
       endmacro()
     endif()
