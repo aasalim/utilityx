@@ -1,5 +1,8 @@
 
-add_executable(UnitTests testClamp.cpp testMax.cpp)
+add_executable(UnitTests testClamp.cpp
+    testMax.cpp
+    testMin.cpp
+    testSign.cpp)
 
 target_link_libraries(UnitTests
     PUBLIC

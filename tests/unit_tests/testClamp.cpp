@@ -26,7 +26,7 @@ INSTANTIATE_TEST_SUITE_P(ClampTests, ClampParameterizedFixture,
         std::make_tuple(0, 1, 2, 1),
         std::make_tuple(3, 1, 2, 2)));
 
-TEST_P(ClampParameterizedFixture, Test_Constrain)
+TEST_P(ClampParameterizedFixture, Test_Clamp)
 {
     /* Arrange */
     value = std::get<0>(GetParam());
