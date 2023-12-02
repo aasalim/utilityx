@@ -165,7 +165,7 @@ foreach(LANG ${LANGUAGES})
     endif()
 endforeach()
 
-set(COVERAGE_COMPILER_FLAGS "-g --coverage -O0"
+set(COVERAGE_COMPILER_FLAGS "-g --coverage"
     CACHE INTERNAL "")
 
 if(CMAKE_CXX_COMPILER_ID MATCHES "(GNU|Clang)")

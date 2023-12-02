@@ -32,8 +32,8 @@
 
 include(CMakeDependentOption)
 
-set(COVERAGE_COMPILER_FLAGS  "-g -O0 --coverage" CACHE INTERNAL "")
-set(COVERAGE_LINKER_FLAGS    "--coverage"        CACHE INTERNAL "")
+set(COVERAGE_COMPILER_FLAGS "-g --coverage" CACHE INTERNAL "")
+set(COVERAGE_LINKER_FLAGS "--coverage" CACHE INTERNAL "")
 
 get_property(ENABLED_LANGUAGES GLOBAL PROPERTY ENABLED_LANGUAGES)
 
@@ -49,9 +49,11 @@ foreach(_LANG IN LISTS ENABLED_LANGUAGES)
 		if(DEFINED ${_LANG}_COVERAGE_SUPPORTED)
 			message(STATUS "Skipping ${_LANG}, not supported by Coverage.cmake script")
 		endif()
+
 		set(${_LANG}_COVERAGE_SUPPORTED FALSE)
 		continue()
 	endif()
+
 	if(${_LANG}_COVERAGE_SUPPORTED)
 		set(CMAKE_${_LANG}_FLAGS_COVERAGE
 			${COVERAGE_COMPILER_FLAGS}
@@ -77,10 +79,9 @@ if(COVERAGE_SUPPORTED)
 	)
 endif()
 
-
 cmake_dependent_option(COVERAGE_IN_CONFIGURATION_TYPES
-    "Should the Coverage target be in the CMAKE_CONFIGURATION_TYPES list if supported ?" ON
-    "CMAKE_CONFIGURATION_TYPES;COVERAGE_SUPPORTED" OFF # No need for this option if we are not using a multi-config generator
+	"Should the Coverage target be in the CMAKE_CONFIGURATION_TYPES list if supported ?" ON
+	"CMAKE_CONFIGURATION_TYPES;COVERAGE_SUPPORTED" OFF # No need for this option if we are not using a multi-config generator
 )
 
 if(COVERAGE_IN_CONFIGURATION_TYPES)
