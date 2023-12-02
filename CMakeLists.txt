@@ -1,5 +1,5 @@
 #
-# Main CMakelists for the XTemplate project.
+# Main CMakelists for the UtilityX project.
 #
 # Project description
 #
@@ -19,7 +19,7 @@ endif()
 # Put the project early since modules might need to detect the compiler.
 # More information https://cmake.org/cmake/help/latest/command/project.html
 project(
-    "XTemplate" # This will exposed as the variable PROJECT_NAME.
+    "UtilityX" # This will exposed as the variable PROJECT_NAME.
     VERSION 0.1.0 # Used for installation and defines variables PROJECT_VERSION_MAJOR, PROJECT_VERSION_MINOR, PROJECT_VERSION_PATCH, and PROJECT_VERSION_TWEAK.
     LANGUAGES C CXX # Used to determine the languages to use based on file extensions
 )
@@ -99,12 +99,12 @@ set(CMAKE_VISIBILITY_INLINES_HIDDEN 1)
 
 # ###################################################################### PROJECT
 # Project Dependencies
-# CPMAddPackage("gh:aasalim/XTemplate#2676563bae7d79b3ccf1e64d61cda1e8ea97d111")
+# CPMAddPackage("gh:aasalim/UtilityX#2676563bae7d79b3ccf1e64d61cda1e8ea97d111")
 
 # Check for LTO support (needs to be after project(...) )
 find_lto(CXX)
 
-# ############################################################ XTemplate Library
+# ############################################################ UtilityX Library
 
 # Always list the source files explicitly, including headers so that they are listed in the IDE
 # If you need to use files based on a variable value, use target_sources
